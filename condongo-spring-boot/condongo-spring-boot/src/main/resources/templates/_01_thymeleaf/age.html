@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf 실습1</title>
+</head>
+<body>
+<div th:if="${age}<20" style="color:blue">
+    <span th:with="age=${age}" th:text="${age}+'세는 미성년자입니다.'"></span>
+
+
+</div>
+<div th:unless="${age}<20" style="color:green">
+    <span th:with="age=${age}" th:text="${age}+'세는 성인입니다'"></span>
+
+
+</div>
+<div th:if="${age2}<20" style="color:blue">
+    <span th:with="age2=${age2}" th:text="${age2} +'세는 미성년자입니다.'"></span>
+    <span>세는 미성년자입니다.</span>
+
+</div>
+<div th:unless="${age2}<20" style="color:green">
+    <span th:with="age=${age2}" th:text="${age2}+'세는 성인입니다'"></span>
+    <span>세는 성인입니다.</span>
+
+</div>
+</body>
+</html>
