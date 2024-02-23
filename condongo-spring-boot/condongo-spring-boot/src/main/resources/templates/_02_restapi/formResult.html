@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>실습 form post 전송 실습</title>
+</head>
+<body>
+
+<h1>Res 결과를 확인해보자!</h1>
+<ul>
+    <li>이름: <strong th:text="${name}"></strong></li>
+    <li>성별: <strong th:text="${gender}"></strong></li>
+    <li>생년월일:
+        <strong th:text="${year}"></strong>년
+        <strong th:text="${month}"></strong>월
+        <strong th:text="${date}"></strong>일
+    </li>
+    <li>
+        관심사:
+        <strong th:eacg="${interest}"></strong>
+    </li>
+</ul>
+</body>
+</html>
