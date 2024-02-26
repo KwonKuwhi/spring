@@ -1,6 +1,8 @@
 package codingon.condongospringboot.controller._02_restapi;
 
 import codingon.condongospringboot.dto.UserDTO;
+import codingon.condongospringboot.vo.User2VO;
+import codingon.condongospringboot.vo.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -176,8 +178,127 @@ public class RestController {
         return userDTO.getName() + " " + userDTO.getAge();
     }// x : // error (type=Unsupported Media Type, status=415).
 
+    // ============== VO 이용 ==============
+
+    @GetMapping("/vo/res1")
+    @ResponseBody
+    public String voRes1(@ModelAttribute UserVO userVO){
+        System.out.println(userVO.hashCode()); //961
+        // @ModelAttribute 를 이용하면 객체의 set 함수를 이용해 값을 넣어줌
+        return userVO.getName() + " " + userVO.getAge();
+    } // o (null, null)
+
+
+    @PostMapping("/vo/res2")
+    @ResponseBody
+    public String voRes2(UserVO userVO){
+//        return userVO.getName() + " " + userVO.getAge();
+
+        String msg = "이름 : " + userVO.getName() + " 나이 : " + userVO.getAge();
+        return msg;
+    } // o (null, null)
+
+    @PostMapping("/vo/res3")
+    @ResponseBody
+    public String voRes3(@RequestBody UserVO userVO){
+        return userVO.getName() + " " + userVO.getAge();
+    } //  x : // error (type=Unsupported Media Type, status=415).
+
+    // ============ DTO 이용 with axios =============
+    @GetMapping("/axios/res1")
+    @ResponseBody
+    public String axiosRes1(@RequestParam String name, @RequestParam String age){
+        return "이름 : " + name + ", 나이: " + age;
+    } // o
+
+    @GetMapping("/axios/res2")
+    @ResponseBody
+    public String axiosRes2(UserDTO userDTO){
+        return "이름 : " + userDTO.getName() + ", 나이: " + userDTO.getAge();
+    } // o
+
+    @PostMapping("/axios/res3")
+    @ResponseBody
+    public String axiosRes3(@RequestParam String name, @RequestParam String age){
+        // @RequestParam required 기본값이 true
+        // axios로 값을 전달하게 될 경우 파라미터로 값이 들어오지 않는다. (Post로 보냈을 때)
+        // 값이 들어오지 않는데 기본값이 true이기 떄문에 오류
+
+        return "이름 : " + name + ", 나이: " + age;
+    } // x (error 400)
+
+    @PostMapping("/axios/res4")
+    @ResponseBody
+    public String axiosRes4(UserDTO userDTO) {
+        return "이름 : " + userDTO.getName() + ", 나이: " + userDTO.getAge();
+    } // 0 (null)
+
+    @PostMapping("/axios/res5")
+    @ResponseBody
+    public String axiosRes5(@RequestBody UserDTO userDTO) {
+        return "이름 : " + userDTO.getName() + ", 나이: " + userDTO.getAge();
+    } // 0
+
+
+    // ============ VO 이용 with axios =============
+    @GetMapping("/axios/vo/res1")
+    @ResponseBody
+    public String axiosVORes1(@RequestParam String name, @RequestParam String age){
+        return "이름 : " + name + ", 나이: " + age;
+    } // o
+
+    @GetMapping("/axios/vo/res2")
+    @ResponseBody
+    public String axiosVORes2(UserVO userVO ){
+       //@ModelAttribute 생략
+        // setter 함수를 실행해서 값을 넣어주기 떄문에 null
+        // UserVO에는 setter 없음
+        return "이름 : " + userVO.getName() + ", 나이: " + userVO.getAge();
+    } // o (null)
+
+    @PostMapping("/axios/vo/res3")
+    @ResponseBody
+    public String axiosVORes3(@RequestParam String name, @RequestParam String age){
+        // @RequestParam required 기본값이 true
+        // axios로 값을 전달하게 될 경우 파라미터로 값이 들어오지 않는다. (Post로 보냈을 때)
+        // 값이 들어오지 않는데 기본값이 true이기 떄문에 오류
+
+        return "이름 : " + name + ", 나이: " + age;
+    } // x (error 400)
+
+    @PostMapping("/axios/vo/res4")
+    @ResponseBody
+    public String axiosVORes4(UserVO userVO) {
+        return "이름 : " + userVO.getName() + ", 나이: " + userVO.getAge();
+    } // 0 (null)
+
+    @PostMapping("/axios/vo/res5")
+    @ResponseBody
+    public String axiosVORes5(@RequestBody UserVO userVO) {
+        // @RequestBody 로 값을 전달할 때 userVO에 setter 함수가 없어도 값이 들어간다.
+        // setter 함수 실행이 아니라 각각의 필드(변수)에 직접적으로 값을 주입하면서 매핑
+        // @ModelAttribute 가 setter 함수를 실행해 값을 넣어준다면,
+        // @RequestBody 는 각각의 필드에 직접 주입
+        return "이름 : " + userVO.getName() + ", 나이: " + userVO.getAge();
+    } // 0
+    ///////////////////////////실습//////////////////////////////////
+
+
+        @GetMapping("/register")
+        public String getRegister() {
+            return "_02_restapi/voPrac";
+
+        }
 
 
 
-
+    @PostMapping("/axios/vo/register")
+    @ResponseBody
+    public String Register(@RequestBody User2VO user2VO) {
+        // @RequestBody 로 값을 전달할 때 userVO에 setter 함수가 없어도 값이 들어간다.
+        // setter 함수 실행이 아니라 각각의 필드(변수)에 직접적으로 값을 주입하면서 매핑
+        // @ModelAttribute 가 setter 함수를 실행해 값을 넣어준다면,
+        // @RequestBody 는 각각의 필드에 직접 주입
+        return user2VO.getName() + "님 회원가입 성공!" ;
+    } // 0
 }

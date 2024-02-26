@@ -4,6 +4,14 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/codingon-spring-boot-mybatis/codingon-spring-boot-mybatis" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/codingon-spring-boot-mybatis/codingon-spring-boot-mybatis" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/condongo-spring-boot/condongo-spring-boot" />
         <option name="gradleJvm" value="17" />
         <option name="modules">

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post로 정보 받기 실습</title>
+    <!--    axios CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+<form id="register_form">
+    이름
+    <input type="text" name="name">
+    <br>
+    성별
+    <input type="radio" value="남자" name="gender">남자
+    <input type="radio" value="여자" name="gender">여자
+    <br>
+    생년월일
+    <select name="year">
+        <optgroup label="year">
+            <option value="1995">1995</option>
+            <option value="1996">1996</option>
+            <option value="1997">1997</option>
+            <option value="1998">1998</option>
+            <option value="1999">1999</option>
+        </optgroup>
+    </select> 년
+
+    <select name="month">
+        <optgroup label="month">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </optgroup>
+    </select> 월
+
+    <select name="date">
+        <optgroup label="date">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+        </optgroup>
+    </select> 일
+    <br>
+    관심사
+    <input type="checkbox" value="여행" name="interest">여행
+    <input type="checkbox" value="패션" name="interest">패션
+    <input type="checkbox" value="음식" name="interest">음식
+    <br>
+    <button type="button" onclick="register()">회원가입</button>
+
+</form>
+
+<script>
+    function register(){
+        const form = document.getElementById('register_form');
+        axios
+        .post('/axios/vo/register' , {name: form.name.value, gender: form.gender.value, year: form.year.value, month: form
+        .month.value, date: form.date.value, interest: form.interest.value})
+        .then((res)=>{
+               console.log(res.data);
+               });
+    }
+</script>
+</body>
+</html>
