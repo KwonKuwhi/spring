@@ -6,11 +6,14 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface PostMapper {
-    @Select("select * from post")
-    void selectPost(Post post);
+    List<Post> getAll();
+    void insertPost(Post post);
+    void patchPost(Post post);
+    void deletePost(int id);
 
-    @Insert("insert into post(title, content, writer) values(#{title}, #{content}, #{writer})")
-    void createPost(Post post);
+    List<Post> searchPost(String word);
 }

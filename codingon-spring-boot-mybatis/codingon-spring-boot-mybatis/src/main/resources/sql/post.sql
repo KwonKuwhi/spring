@@ -5,5 +5,5 @@ create table post(
     title varchar(20) not null,
     content varchar(100) not null,
     writer varchar(10) not null,
-
+    registered datetime default current_timestamp;
 );

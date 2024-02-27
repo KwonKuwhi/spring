@@ -10,4 +10,5 @@ public class Post {
     private String title;
     private String content;
     private String writer;
+    private String registered;
 }

@@ -28,6 +28,7 @@ public class UserController {
         model.addAttribute("list", users);
         // 템플릿으로 값을 전달하는 model에 담아 전달한다.
         return "user";
+        //        return "redirect:/";
     }
 
     //postman 사용해서 값 insert 할 것
@@ -38,7 +39,6 @@ public class UserController {
         user.setName(nickname);
         userService.insertUser(user);
         return "user";
-//        return "redirect:/";
     }
 
 }

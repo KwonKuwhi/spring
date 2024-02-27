@@ -8,8 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PostDTO {
+    private String no;
     private int id;
     private String title;
     private String content;
     private String writer;
+    private String registered;
 }
